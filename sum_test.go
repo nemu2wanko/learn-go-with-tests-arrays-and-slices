@@ -22,9 +22,17 @@ func TestSumAll(t *testing.T) {
 	got := SumAll([]int{1, 2}, []int{0, 9})
 	want := []int{3, 9}
 
-	// if got != want {
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got %v want %v", got, want)
 	}
 
+}
+
+func TestSumAllTrails(t *testing.T) {
+	got := SumAllTails([]int{1, 2, 3}, []int{2, 3, 4})
+	want := []int{5, 7}
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v want %v", got, want)
+	}
 }
