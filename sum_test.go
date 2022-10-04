@@ -29,10 +29,26 @@ func TestSumAll(t *testing.T) {
 }
 
 func TestSumAllTrails(t *testing.T) {
-	got := SumAllTails([]int{1, 2, 3}, []int{2, 3, 4})
-	want := []int{5, 7}
-
-	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got %v want %v", got, want)
+	checkSums := func(t *testing.T, got []int, want []int) {
+		t.Helper()
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %v want %v", got, want)
+		}
 	}
+
+	t.Run("make the sums of some slices", func(t *testing.T) {
+		got := SumAllTails([]int{1, 2, 3}, []int{2, 3, 4})
+		want := []int{5, 7}
+
+		checkSums(t, got, want)
+	})
+
+	t.Run("safely sum empty slices", func(t *testing.T) {
+		got := SumAllTails([]int{}, []int{3, 4, 5})
+		want := []int{0, 9}
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %v want %v", got, want)
+		}
+	})
 }
